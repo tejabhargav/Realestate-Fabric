@@ -86,26 +86,28 @@ type SmartContract struct {
 // Property describes basic details of what makes up a simple Property
 // Insert struct field in alphabetic order => to achieve determinism accross languages
 // golang keeps the order when marshal to json but doesn't order automatically
-type RealEstateProperty struct {
-    Description string `json:"Description"`
-    ID          string `json:"ID"`
-    Owner       string `json:"Owner"`
-    Price       int    `json:"Price"`
-    Status      string `json:"Status"`
-}
+
+	type RealEstateProperty struct {
+	    Description string `json:"Description"`
+	    ID          string `json:"ID"`
+	    Owner       string `json:"Owner"`
+	    Price       int    `json:"Price"`
+	    Status      string `json:"Status"`
+	}
 
 // InitLedger adds a base set of Properties to the ledger
-func (s *SmartContract) InitLedger(ctx contractapi.TransactionContextInterface) error {
-    assets := []RealEstateProperty{
-        {ID: "asset1", Owner: "Teja", Description: "200 sq yards in Hyderabad", Price: 50000000, Status: "For Sale"},
-        {ID: "asset2", Owner: "Bhargav", Description: "200 sq yards in Kolkata", Price: 50000000, Status: "For Sale"},
-        {ID: "asset3", Owner: "Smayan", Description: "500 sq yards in Andhra Pradesh", Price: 10000000, Status: "For Sale"},
-        {ID: "asset4", Owner: "Prajakta", Description: "200 sq yards in Karnataka", Price: 1000000, Status: "For Sale"},
-        {ID: "asset5", Owner: "Resha", Description: "300 sq yards in Maharashtra", Price: 15000000, Status: "For Sale"},
-        {ID: "asset6", Owner: "Sahithi", Description: "4bhk in Mumbai", Price: 1500000, Status: "For Sale"},
-        {ID: "asset7", Owner: "Rahul", Description: "2bhk in Kerala", Price: 15000000, Status: "For Sale"},
-        {ID: "asset8", Owner: "Ujwala", Description: "600 sq ft Flat in AndhraPradhesh", Price: 150000000, Status: "For Sale"},
-    }
+
+	func (s *SmartContract) InitLedger(ctx contractapi.TransactionContextInterface) error {
+	    assets := []RealEstateProperty{
+		{ID: "asset1", Owner: "Teja", Description: "200 sq yards in Hyderabad", Price: 50000000, Status: "For Sale"},
+		{ID: "asset2", Owner: "Bhargav", Description: "200 sq yards in Kolkata", Price: 50000000, Status: "For Sale"},
+		{ID: "asset3", Owner: "Smayan", Description: "500 sq yards in Andhra Pradesh", Price: 10000000, Status: "For Sale"},
+		{ID: "asset4", Owner: "Prajakta", Description: "200 sq yards in Karnataka", Price: 1000000, Status: "For Sale"},
+		{ID: "asset5", Owner: "Resha", Description: "300 sq yards in Maharashtra", Price: 15000000, Status: "For Sale"},
+		{ID: "asset6", Owner: "Sahithi", Description: "4bhk in Mumbai", Price: 1500000, Status: "For Sale"},
+		{ID: "asset7", Owner: "Rahul", Description: "2bhk in Kerala", Price: 15000000, Status: "For Sale"},
+		{ID: "asset8", Owner: "Ujwala", Description: "600 sq ft Flat in AndhraPradhesh", Price: 150000000, Status: "For Sale"},
+	    }
 
     for _, asset := range assets {
         assetJSON, err := json.Marshal(asset)
@@ -120,17 +122,18 @@ func (s *SmartContract) InitLedger(ctx contractapi.TransactionContextInterface) 
     }
 
     return nil
-}
+	}
 
 // CreateProperty issues a new asset to the world state with given details.
-func (s *SmartContract) CreateProperty(ctx contractapi.TransactionContextInterface, id string, owner string, description string, price int, status string) error {
-    exists, err := s.PropertyExists(ctx, id)
-    if err != nil {
-        return err
-    }
-    if exists {
-        return fmt.Errorf("the property %s already exists", id)
-    }
+
+	func (s *SmartContract) CreateProperty(ctx contractapi.TransactionContextInterface, id string, owner string, description string, price int, status string) error {
+	    exists, err := s.PropertyExists(ctx, id)
+	    if err != nil {
+		return err
+	    }
+	    if exists {
+		return fmt.Errorf("the property %s already exists", id)
+	    }
 
     asset := RealEstateProperty{
         ID:          id,
@@ -152,7 +155,8 @@ func (s *SmartContract) CreateProperty(ctx contractapi.TransactionContextInterfa
 }
 
 // ReadProperty returns the asset stored in the world state with given id.
-func (s *SmartContract) ReadProperty(ctx contractapi.TransactionContextInterface, id string) (*RealEstateProperty, error) {
+
+	func (s *SmartContract) ReadProperty(ctx contractapi.TransactionContextInterface, id string) (*RealEstateProperty, error) {
     assetJSON, err := ctx.GetStub().GetState(id)
     if err != nil {
         return nil, fmt.Errorf("failed to read from world state: %v", err)
