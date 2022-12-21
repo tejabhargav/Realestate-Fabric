@@ -1,0 +1,13 @@
+{
+  "deployedContracts": [],
+  "accounts": [
+    {
+      "name": "org1",
+      "orgName": "org1"
+    },
+    {
+      "name": "org2",
+      "orgName": "org2"
+    }
+  ]
+}

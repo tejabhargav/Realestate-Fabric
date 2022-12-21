@@ -1,0 +1,28 @@
+{
+  "deployedContracts": [
+    {
+      "name": "FireFly",
+      "location": {
+        "chaincode": "firefly",
+        "channel": "firefly"
+      }
+    },
+    {
+      "name": "asset_transfer.zip",
+      "location": {
+        "chaincode": "asset_transfer",
+        "channel": "firefly"
+      }
+    }
+  ],
+  "accounts": [
+    {
+      "name": "org1",
+      "orgName": "org1"
+    },
+    {
+      "name": "org2",
+      "orgName": "org2"
+    }
+  ]
+}

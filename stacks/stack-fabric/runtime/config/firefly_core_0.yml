@@ -1,0 +1,84 @@
+admin:
+  address: 0.0.0.0
+  enabled: true
+  port: 5101
+  publicURL: http://127.0.0.1:5101
+debug:
+  port: 6060
+event:
+  dbevents:
+    bufferSize: 10000
+http:
+  address: 0.0.0.0
+  port: 5000
+  publicURL: http://127.0.0.1:5000
+log:
+  level: debug
+metrics: {}
+namespaces:
+  default: default
+  predefined:
+  - defaultKey: org1
+    description: Default predefined namespace
+    multiparty:
+      contract:
+      - firstEvent: ""
+        location:
+          chaincode: firefly
+          channel: firefly
+      enabled: true
+      org:
+        key: org1
+        name: org1
+    name: default
+    plugins:
+    - database0
+    - blockchain0
+    - dataexchange0
+    - sharedstorage0
+    - erc20_erc721
+node:
+  name: peer1
+plugins:
+  blockchain:
+  - fabric:
+      fabconnect:
+        chaincode: firefly
+        channel: firefly
+        signer: org1
+        topic: "0"
+        url: http://fabconnect_0:3000
+    name: blockchain0
+    type: fabric
+  database:
+  - name: database0
+    sqlite3:
+      migrations:
+        auto: true
+      url: /etc/firefly/db?_busy_timeout=5000
+    type: sqlite3
+  dataexchange:
+  - ffdx:
+      url: http://dataexchange_0:3000
+    name: dataexchange0
+    type: ffdx
+  sharedstorage:
+  - ipfs:
+      api:
+        url: http://ipfs_0:5001
+      gateway:
+        url: http://ipfs_0:8080
+    name: sharedstorage0
+    type: ipfs
+  tokens:
+  - fftokens:
+      url: http://tokens_0_0:3000
+    name: erc20_erc721
+    type: fftokens
+spi:
+  address: 0.0.0.0
+  enabled: true
+  port: 5101
+  publicURL: http://127.0.0.1:5101
+ui:
+  path: ./frontend
