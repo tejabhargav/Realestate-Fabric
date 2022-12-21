@@ -171,7 +171,8 @@ func (s *SmartContract) ReadProperty(ctx contractapi.TransactionContextInterface
 }
 
 // UpdateProperty updates an existing asset in the world state with provided parameters.
-func (s *SmartContract) UpdateProperty(ctx contractapi.TransactionContextInterface, id string, owner string, description string, price int, status string) error {
+
+     func (s *SmartContract) UpdateProperty(ctx contractapi.TransactionContextInterface, id string, owner string,    description string, price int, status string) error {
     exists, err := s.PropertyExists(ctx, id)
     if err != nil {
         return err
@@ -197,7 +198,8 @@ func (s *SmartContract) UpdateProperty(ctx contractapi.TransactionContextInterfa
 }
 
 // DeleteProperty deletes an given property from the world state.
-func (s *SmartContract) DeleteProperty(ctx contractapi.TransactionContextInterface, id string) error {
+
+    func (s *SmartContract) DeleteProperty(ctx contractapi.TransactionContextInterface, id string) error {
     exists, err := s.PropertyExists(ctx, id)
     if err != nil {
         return err
@@ -209,8 +211,9 @@ func (s *SmartContract) DeleteProperty(ctx contractapi.TransactionContextInterfa
     return ctx.GetStub().DelState(id)
 }
 
-// PropertyExists returns true when property with given ID exists in world state
-func (s *SmartContract) PropertyExists(ctx contractapi.TransactionContextInterface, id string) (bool, error) {
+// PropertyExists returns true when property with given ID exists in world state.
+
+    func (s *SmartContract) PropertyExists(ctx contractapi.TransactionContextInterface, id string) (bool, error) {
     assetJSON, err := ctx.GetStub().GetState(id)
     if err != nil {
         return false, fmt.Errorf("failed to read from world state: %v", err)
@@ -220,29 +223,32 @@ func (s *SmartContract) PropertyExists(ctx contractapi.TransactionContextInterfa
 }
 
 // TransferProperty updates the owner field of property with given id in world state.
-func (s *SmartContract) TransferProperty(ctx contractapi.TransactionContextInterface, id string, newOwner string) (string, error) {
-    asset, err := s.ReadProperty(ctx, id)
-    if err != nil {
-        return "", err
-    }
 
-    oldOwner := asset.Owner
-    asset.Owner = newOwner
 
-    assetJSON, err := json.Marshal(asset)
-    if err != nil {
-        return "", err
-    }
+	func (s *SmartContract) TransferProperty(ctx contractapi.TransactionContextInterface, id string, newOwner string) 	  (string, error) {
+    	asset, err := s.ReadProperty(ctx, id)
+    	if err != nil {
+        	return "", err
+    	}
 
-    err = ctx.GetStub().PutState(id, assetJSON)
-    if err != nil {
-        return "", err
-    }
+    	oldOwner := asset.Owner
+    	asset.Owner = newOwner
 
-    return oldOwner, nil
-}
+    	assetJSON, err := json.Marshal(asset)
+    	if err != nil {
+        	return "", err
+    	}
+
+    	err = ctx.GetStub().PutState(id, assetJSON)
+    	if err != nil {
+        	return "", err
+    	}
+
+    	return oldOwner, nil
+	}
 
 // GetAllProperties returns all properties found in world state
+
 func (s *SmartContract) GetAllProperties(ctx contractapi.TransactionContextInterface) ([]*RealEstateProperty, error) {
     // range query with empty string for startKey and endKey does an
     // open-ended query of all assets in the chaincode namespace.
