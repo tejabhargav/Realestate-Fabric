@@ -1,0 +1,171 @@
+{
+  "namespace": "default",
+  "name": "asset_transfer",
+  "description": "Spec interface for the asset-transfer-basic golang chaincode",
+  "version": "1.0",
+  "methods": [
+    {
+      "name": "GetAllAssets",
+      "pathname": "",
+      "description": "",
+      "params": [],
+      "returns": [
+        {
+          "name": "",
+          "schema": {
+            "type": "array",
+            "details": {
+              "type": "object",
+              "properties": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "CreateAsset",
+      "pathname": "",
+      "description": "",
+      "params": [
+        {
+          "name": "id",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "owner",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "description",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "price",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "status",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "ReadAsset",
+      "pathname": "",
+      "description": "",
+      "params": [
+        {
+          "name": "id",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "UpdateAsset",
+      "pathname": "",
+      "description": "",
+      "params": [
+        {
+          "name": "id",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "owner",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "description",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "price",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "status",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "DeleteAsset",
+      "pathname": "",
+      "description": "",
+      "params": [
+        {
+          "name": "id",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "AssetExists",
+      "pathname": "",
+      "description": "",
+      "params": [
+        {
+          "name": "id",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "returns": []
+    },
+    {
+      "name": "TransferAsset",
+      "pathname": "",
+      "description": "",
+      "params": [
+        {
+          "name": "id",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "newOwner",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "returns": []
+    }
+  ],
+  "events": [
+    {
+      "name": "AssetCreated"
+    }
+  ]
+}
