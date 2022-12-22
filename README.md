@@ -253,7 +253,7 @@ type SmartContract struct {
 
 // GetAllProperties returns all properties found in world state
 
-func (s *SmartContract) GetAllProperties(ctx contractapi.TransactionContextInterface) ([]*RealEstateProperty, error) {
+	func (s *SmartContract) GetAllProperties(ctx contractapi.TransactionContextInterface) ([]*RealEstateProperty, error) {
     // range query with empty string for startKey and endKey does an
     // open-ended query of all assets in the chaincode namespace.
     resultsIterator, err := ctx.GetStub().GetStateByRange("", "")
