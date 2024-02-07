@@ -1,6 +1,12 @@
 # Realestate-Fabric
 RealEstate procurement system using hyperledger firefly and hyperledger fabric.
-Project Specification
+Developers:
+Teja Bhargav Podila
+Thakur Smayan Singh
+Vashista Vallambhatla
+Rahul Maramraju
+**Project Specifications:**
+
 
 Project Objective: 
 •	To create a web application allows users to buy and sell assets.
